@@ -1,0 +1,13 @@
+<div [formGroup]="inputNameForm" class="input-name grid">
+  <mat-form-field appearance="fill">
+    <mat-label>Vorname</mat-label>
+    <input matInput placeholder="Vorname" formControlName="firstName">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Nachname</mat-label>
+    <input matInput placeholder="Nachname" formControlName="lastName">
+  </mat-form-field>  
+
+  <span class="material-icons bit-button" (click)="onClickRemove()"matTooltip="Remove Item"> close </span>
+</div>

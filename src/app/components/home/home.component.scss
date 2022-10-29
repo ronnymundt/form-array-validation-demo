@@ -1,0 +1,26 @@
+.home-wrapper {
+    &.grid {
+        display: grid;
+        justify-content: center; 
+    }
+    
+    .form-wrapper {  
+        border: solid 2px #fff;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 1rem;
+
+        &.invalid {
+            border: solid 2px crimson; 
+         }
+    }
+
+    .action-wrapper {
+        justify-self: right;
+        padding: 1rem;
+    }
+    
+    .bit-button {    
+        background-color: seagreen;
+    }
+}

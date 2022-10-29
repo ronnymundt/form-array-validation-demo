@@ -1,0 +1,18 @@
+<div class="home-wrapper grid">
+    <div [formGroup]="groupForm" class="form-wrapper" [ngClass]="{ 'invalid': groupForm.invalid === true }">       
+        <ng-container formArrayName="arrayForms">
+            <ng-container *ngFor="let ctrl of arrayForms.controls; let i = index">
+                <div [formGroupName]="i">
+                    <input-name formControlName="inputName" (onRemoveItemClick)="onRemoveItemClick(i)"></input-name> 
+                </div>
+            </ng-container>
+        </ng-container>
+    </div>
+    
+    <div class="action-wrapper">
+        <span class="material-icons bit-button" (click)="onAddItemClick()" matTooltip="Add Item"> add </span>
+    </div>    
+</div>
+
+<pre>Form dirty: {{groupForm.dirty | json}}</pre>
+<pre>Form invalid: {{groupForm.invalid | json}}</pre>
