@@ -1,7 +1,34 @@
-# Form Array Demo + Form Validation
+# Form Array Demo + Form Validation 🧾
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.
+Diese Angular 19 Demo zeigt, wie man mit **Reactive Forms** 
+dynamisch Eingabefelder für `Vorname` und `Name` hinzufügt – und wie die gesamte Formularvalidierung 
+dabei automatisch aktualisiert wird.
 
-## Screenshot
+## 🚀 Features
 
-![Screenshot](/src/assets/screenshot.png)
+- Dynamisches Hinzufügen und Entfernen von Feldern
+- Validierung auf jedes Feld
+- Visuelles Feedback bei Validierungsfehlern über Angular Material
+- Nutzung von `FormArray` in Kombination mit `FormGroup`
+- Benutzer-Component mit `NG_VALUE_ACCESSOR` zur Übermittlung vom Validierungsstatus
+
+## 🛠️ Verwendete Technologien
+
+- **Angular 19**
+- **Reactive Forms**
+- **Angular Material**
+- **NG_VALUE_ACCESSOR**
+- **TypeScript**
+
+## 🚀 Lokales Setup
+
+```
+git clone https://github.com/ronnymundt/lazy-loading-component-demo.git
+cd lazy-loading-component-demo
+npm install
+ng serve
+```
+
+## 🎥 Screencast
+
+![Screencast](/src/assets/screencast.gif)
