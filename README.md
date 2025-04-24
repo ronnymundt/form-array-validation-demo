@@ -23,8 +23,8 @@ dabei automatisch aktualisiert wird.
 ## 🚀 Lokales Setup
 
 ```
-git clone https://github.com/ronnymundt/lazy-loading-component-demo.git
-cd lazy-loading-component-demo
+git clone https://github.com/ronnymundt/form-array-validation-demo.git
+cd form-array-validation-demo
 npm install
 ng serve
 ```
