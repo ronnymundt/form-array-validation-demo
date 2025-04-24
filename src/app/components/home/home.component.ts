@@ -1,63 +1,81 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
+import {
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { INames } from '../../interfaces/names.interface';
+import { InputNameComponent } from '../input-name/input-name.component';
 
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  imports: [
+    ReactiveFormsModule,
+    InputNameComponent,
+    CommonModule,
+    MatTooltipModule,
+  ],
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  private readonly fb = inject(FormBuilder);
 
-  //PUBLICS
-  public groupForm: FormGroup = new FormGroup('');
-  get arrayForms() { return this.groupForm.get("arrayForms") as FormArray; };
-
-
-  constructor(
-    private _fb: FormBuilder
-  ) { }
+  groupForm!: FormGroup;
 
   ngOnInit(): void {
-    this._initFormGroup();
-  }  
-  
-  /**
-  * methode initalisiert die form gruppe
-  */
-  private _initFormGroup(): void {
-    this.groupForm = this._fb.group({
-      arrayForms: this._fb.array([])
-    });  
-    
-    this.arrayForms.push(this._getInputFormGroup({ firstName: "Clark", lastName: "Kent" }));   
-    this.arrayForms.push(this._getInputFormGroup());   
-  } 
+    this.initForm();
+  }
 
   /**
-   * 
-   * @returns 
+   * Methode initalisiert die form gruppe
    */
-  private _getInputFormGroup(value?: INames): FormGroup { 
-    return this._fb.group({
-      inputName: new FormControl({ value: value, disabled: false }, Validators.required)
+  private initForm(): void {
+    this.groupForm = this.fb.group({
+      arrayForms: this.fb.array([]),
     });
-  }  
 
-  // EVENTS
+    // push initial values
+    this.arrayForms.push(
+      this.getInputFormGroup({ firstName: 'Clark', lastName: 'Kent' }),
+    );
+    this.arrayForms.push(this.getInputFormGroup());
+  }
+
+  /**
+   * Methode gibt die FormGroup zurück
+   * @param value
+   * @private
+   */
+  private getInputFormGroup(value?: INames): FormGroup {
+    return this.fb.group({
+      inputName: [{ value: value, disabled: false }, Validators.required],
+    });
+  }
+
+  /**
+   * Getter für Form Array
+   */
+  get arrayForms() {
+    return this.groupForm.get('arrayForms') as FormArray;
+  }
 
   /**
    * Event fügt name item zum Form Array hinzu.
    */
-  public onAddItemClick(): void {    
-    this.arrayForms.push(this._getInputFormGroup());    
+  onAddItemClick(): void {
+    this.arrayForms.push(this.getInputFormGroup());
   }
 
   /**
    * Event entfernt name item aus Form Array.
-   * @param index 
+   * @param index
    */
-  public onRemoveItemClick(index: number): void {
-    this.arrayForms.removeAt(index);    
+  onRemoveItemClick(index: number): void {
+    this.arrayForms.removeAt(index);
   }
 }
