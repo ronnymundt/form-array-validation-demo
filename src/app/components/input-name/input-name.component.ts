@@ -15,7 +15,9 @@ import {
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { INames } from '../../interfaces/names.interface';
@@ -29,6 +31,8 @@ import { INames } from '../../interfaces/names.interface';
     MatInputModule,
     ReactiveFormsModule,
     MatTooltipModule,
+    MatButtonModule,
+    MatIconModule,
   ],
   providers: [
     {
@@ -46,15 +50,15 @@ export class InputNameComponent implements OnInit, ControlValueAccessor {
 
   inputNameForm!: FormGroup;
 
-  ngOnInit(): void {
-    this._initFormGroup();
+  ngOnInit() {
+    this.initFormGroup();
     this.initSubs();
   }
 
   /**
    * methode initalisiert die form gruppe
    */
-  private _initFormGroup(): void {
+  private initFormGroup() {
     this.inputNameForm = this.fb.group({
       firstName: [],
       lastName: [],
@@ -64,7 +68,7 @@ export class InputNameComponent implements OnInit, ControlValueAccessor {
   /**
    * Methode initialisiert die Subscriber.
    */
-  private initSubs(): void {
+  private initSubs() {
     this.inputNameForm.valueChanges
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((x: INames) => {
@@ -77,28 +81,28 @@ export class InputNameComponent implements OnInit, ControlValueAccessor {
   /**
    * Eventhandler für den remove button
    */
-  onClickRemove(): void {
+  onRemoveClick() {
     this.onRemoveItemClick.emit();
   }
 
   // VALUE ACCESSOR
 
-  writeValue(value: INames): void {
+  writeValue(value: INames) {
     this.inputNameForm.patchValue(value);
   }
 
   // methode zum senden der änderung an den parent (valid, dirty)
   propagateChange = (_: any) => {};
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: any) {
     this.propagateChange = fn;
   }
 
   // methode zum senden des touch status an den parent
   propagateTouch = (_: any) => {};
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn: any) {
     this.propagateTouch = fn;
   }
 
   // wird ausgeführt wenn {disable = true} vom parent übergeben wird
-  setDisabledState(isDisabled: boolean): void {}
+  setDisabledState(isDisabled: boolean) {}
 }

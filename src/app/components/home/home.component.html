@@ -1,31 +1,34 @@
-<div class="home-wrapper grid">
-  <div
-    [formGroup]="groupForm"
-    class="form-wrapper"
-    [ngClass]="{ invalid: groupForm.invalid }"
-  >
-    <ng-container formArrayName="arrayForms">
-      @for (ctrl of arrayForms.controls; track ctrl.value; let i = $index) {
-        <div [formGroupName]="i">
-          <input-name
-            formControlName="inputName"
-            (onRemoveItemClick)="onRemoveItemClick(i)"
-          ></input-name>
-        </div>
-      }
-    </ng-container>
-  </div>
-
-  <div class="action-wrapper">
-    <span
-      class="material-icons bit-button"
-      (click)="onAddItemClick()"
-      matTooltip="Add Item"
+<mat-card class="form-card" [ngClass]="{ invalid: groupForm.invalid, valid: groupForm.valid }" appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>Form Array Demo + Validierung</mat-card-title>
+    <mat-card-subtitle>FormArray mit dynamischen Feldern</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <form
+      [formGroup]="groupForm"
+      class="form-wrapper"
+      [ngClass]="{ invalid: groupForm.invalid }"
     >
-      add
-    </span>
-  </div>
-</div>
+      <ng-container formArrayName="arrayForms">
+        @for (ctrl of arrayForms.controls; track ctrl.value; let i = $index) {
+          <div [formGroupName]="i">
+            <input-name
+              formControlName="inputName"
+              (onRemoveItemClick)="onRemoveItemClick(i)"
+            ></input-name>
+          </div>
+        }
+      </ng-container>
+    </form>
+  </mat-card-content>
 
-<pre>Form dirty: {{ groupForm.dirty | json }}</pre>
-<pre>Form invalid: {{ groupForm.invalid | json }}</pre>
+  <mat-card-actions>
+    <button mat-flat-button color="accent" (click)="onAddItemClick()">
+      Feld hinzufügen
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<mat-card class="status-bar" [ngClass]="{ invalid: groupForm.invalid, valid: groupForm.valid }">
+  <mat-card-content>Form valid: {{ groupForm.valid | json }}</mat-card-content>
+</mat-card>

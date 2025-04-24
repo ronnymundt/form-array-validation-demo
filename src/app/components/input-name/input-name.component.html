@@ -9,11 +9,7 @@
     <input matInput placeholder="Nachname" formControlName="lastName" />
   </mat-form-field>
 
-  <span
-    class="material-icons bit-button"
-    (click)="onClickRemove()"
-    matTooltip="Remove Item"
-  >
-    close
-  </span>
+  <button mat-fab (click)="onRemoveClick()" color="primary">
+    <mat-icon>delete</mat-icon>
+  </button>
 </div>

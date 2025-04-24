@@ -7,6 +7,9 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { INames } from '../../interfaces/names.interface';
 import { InputNameComponent } from '../input-name/input-name.component';
@@ -19,6 +22,9 @@ import { InputNameComponent } from '../input-name/input-name.component';
     InputNameComponent,
     CommonModule,
     MatTooltipModule,
+    MatCardModule,
+    MatIconModule,
+    MatButtonModule,
   ],
   styleUrls: ['./home.component.scss'],
 })

@@ -1,26 +1,56 @@
-.home-wrapper {
-    &.grid {
-        display: grid;
-        justify-content: center; 
-    }
-    
-    .form-wrapper {  
-        border: solid 2px #fff;
-        padding-left: 1rem;
-        padding-right: 1rem;
-        padding-top: 1rem;
+@use "@angular/material" as mat;
 
-        &.invalid {
-            border: solid 2px crimson; 
-         }
-    }
+:host {
+  display: grid;
+  justify-content: center;
+}
 
-    .action-wrapper {
-        justify-self: right;
-        padding: 1rem;
-    }
-    
-    .bit-button {    
-        background-color: seagreen;
-    }
+.form-card {
+  padding: 0 1rem 1rem 1rem;
+
+  mat-card-header {
+    margin-bottom: 1rem;
+  }
+
+  &.invalid {
+    @include mat.card-overrides(
+      (
+        outlined-outline-color: #f8d7da,
+      )
+    );
+  }
+
+  &.valid {
+    @include mat.card-overrides(
+      (
+        outlined-outline-color: #d4edda,
+      )
+    );
+  }
+}
+
+.status-bar {
+  margin-top: 1rem;
+
+  &.invalid {
+    color: #721c24;
+    @include mat.card-overrides(
+      (
+        elevated-container-color: #f8d7da,
+      )
+    );
+  }
+
+  &.valid {
+    color: #155724;
+    @include mat.card-overrides(
+      (
+        elevated-container-color: #d4edda,
+      )
+    );
+  }
+}
+
+mat-card-actions {
+  padding: 1rem;
 }
